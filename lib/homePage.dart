@@ -4,7 +4,7 @@ import 'package:lost_and_found/itemList.dart';
 import 'package:lost_and_found/profile.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String author;
+  final author;
 
   MyHomePage(this.author, {Key key}) : super(key: key);
 
@@ -14,11 +14,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _widgetOptions = <Widget>[
-    ItemList(),
-    AddItem(),
-    Profile(),
-  ];
+  List<Widget> _widgetOptions;
+
+  updateIndex(index) {
+    setState(() {
+      _selectedIndex = int.parse(index);
+    });
+  }
+
+  refresh() {}
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      ItemList(),
+      AddItem(widget.author, updateIndex),
+      Profile(widget.author),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {

@@ -16,8 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
     var authBloc = Provider.of<AuthBloc>(context, listen: false);
     authBloc.currentUser.listen((fbUser) {
       if (fbUser != null) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => MyHomePage(fbUser.displayName)));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => MyHomePage(fbUser)));
       }
     });
     super.initState();
